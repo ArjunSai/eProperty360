@@ -1,0 +1,26 @@
+﻿
+<div class="row">
+    <div class="site-wrapper" style="padding:0;">
+        <div class="cover">
+            <p class="lead">
+                <div id="panorama1" style="width:100%;height:390px;"></div>
+                <script>
+                    var viewer=pannellum.viewer('panorama1', {
+                        $default
+
+                        "scenes": {
+                            $SceneList                            
+                        }
+                    });
+
+                    //viewer.on('mousedown', function (event) {
+                    //    // For pitch and yaw of center of viewer
+                    //    console.log(viewer.getPitch(), viewer.getYaw());
+                    //    // For pitch and yaw of mouse location
+                    //    console.log(viewer.mouseEventToCoords(event));
+                    //});
+                </script>
+        </div>
+    </div>
+
+</div>

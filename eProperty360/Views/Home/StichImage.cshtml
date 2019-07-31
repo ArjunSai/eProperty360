@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "StichImage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<meta name="generator" content="Hugo 0.48" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pannellum</title>
+<script src="/cdn-cgi/apps/head/TEAHVq5cVsVoM9egFOAS6CBdXPk.js"></script><link rel="stylesheet" href="https://pannellum.org/css/bootstrap.min.css">
+<script type="text/javascript" src="https://pannellum.org/js/bootstrap-native.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CSource+Code+Pro:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://pannellum.org/css/pygments.css">
+<link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css" />
+<script type="text/javascript" src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
+<link rel="stylesheet" href="https://pannellum.org/css/style.css">
+<h2>StichImage</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<div class="row">
+    <div class="col-sm-2">
+        @Html.DropDownList("img", ViewBag.ImgLst as IEnumerable<SelectListItem>, new { @id = "defaultDDL" })
+    </div>   
+    <div class="col-sm-10">
+        <button type="button" class="btn btn-primary" id="btnGetImage">Get Image</button>  
+    </div>    
+</div>
+<div id="LoadImage">     
+</div>
+<br />
+
+<div class="" id="form2" style="display:none">
+
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row"  >
+                    <div class="form-group col-sm-6">
+                        <label for="txtPitch" class="col-form-label">Pitch</label>
+                       
+                            <input type="text" readonly="" class="form-control" id="txtPitch" value=""/>
+                       
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="txtYaw" class="form-label">Yaw</label>
+                       
+                            <input type="text" readonly="" class="form-control" id="txtYaw" value="" />
+                       
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="txtDisplayText">Title To Display</label>
+                        <input type="text" class="form-control" id="txtDisplayText">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="defaultDDL2">Image</label>
+                        @Html.DropDownList("img", ViewBag.ImgLst as IEnumerable<SelectListItem>, new { @id = "defaultDDL2", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnStitchImage">Stitch Image</button>
+                <button type="button" class="btn btn-success" id="btnPreviewImage">Preview Image</button>               
+            </div>
+        </div>
+    
+</div>
+<br/>
+<div  id="PreviewImage">
+</div>
+<br/>
+<button type="button" class="btn btn-danger" id="btnFinal">END</button>   
+
+<script type="text/javascript">
+    var jsonObj = [];
+    $(document).ready(function () {
+    });
+
+    $("#btnGetImage").click(function () {
+        GetImageForStitch();
+    });
+    function GetImageForStitch()
+    {
+        $.ajax({
+            url: '@Url.Action("GetImageHtml", "Home")',
+            dataType: "html",// <-- to expect an html response
+            data: { 'ImageName': $("#defaultDDL option:selected").text(), 'ImageUrl': $("#defaultDDL").val() },
+            type: 'post',
+            success: function (data) {
+                $("#LoadImage").html(data);
+                $("#form2").show();
+            },
+            error: function (xhr, status) {
+                debugger;
+            }
+        });
+    }
+    $("#btnStitchImage").click(function () {
+
+
+        var SceneHotSpots = new Object();
+        SceneHotSpots.SceneId = $("#defaultDDL option:selected").text();
+        SceneHotSpots.SceneUrl = $("#defaultDDL").val();
+        SceneHotSpots.HotspotSceneId = $("#defaultDDL2 option:selected").text();
+        SceneHotSpots.HotspotSceneUrl = $("#defaultDDL2").val();
+        SceneHotSpots.HotspotTitle = $("#txtDisplayText").val();
+        SceneHotSpots.HotspotYaw = $("#txtPitch").val();
+        SceneHotSpots.HotspotPitch = $("#txtYaw").val();
+
+        $.ajax({
+            url: '@Url.Action("MappImage", "Home")',            
+            data: JSON.stringify({ SceneHotSpotobj: SceneHotSpots }),
+            type: 'post',
+            contentType: 'application/json',
+            success: function (data) {
+                $("#txtPitch").val("");
+                $("#txtYaw").val("");
+                $("#txtDisplayText").val("");
+
+            },
+            error: function (xhr, status) {
+                debugger;
+            }
+        });
+    });
+
+    $("#btnFinal").click(function () {
+        $.ajax({
+            url: '@Url.Action("GetFinalHtml", "Home")',
+            type: 'post',
+            success: function (data) {
+
+            },
+            error: function (xhr, status) {
+                debugger;
+            }
+        });
+    });
+
+    $("#btnPreviewImage").click(function () {
+        $.ajax({
+            url: '@Url.Action("GetPreviewHtml", "Home")',
+            type: 'post',
+            success: function (data) {
+                debugger;
+                $("#PreviewImage").html(data);
+                
+            },
+            error: function (xhr, status) {
+                debugger;
+            }
+        });
+    });
+</script>
+
+
+

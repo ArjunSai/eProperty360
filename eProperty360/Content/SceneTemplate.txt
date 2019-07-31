@@ -1,0 +1,14 @@
+﻿"$SceneId": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                "compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "$SceneUrl",
+                                "hotSpots": [
+                                    $HotSpotList                                    
+                                ]
+                            }

@@ -1,0 +1,7 @@
+﻿								   {
+                                        "pitch": $Pitch,
+                                        "yaw": $Yaw,
+                                        "type": "scene",
+                                        "text": "",
+                                        "sceneId": "$HotspotSceneId"
+                                    }
