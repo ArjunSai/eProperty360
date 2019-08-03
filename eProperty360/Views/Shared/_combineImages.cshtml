@@ -1,6 +1,6 @@
 ﻿
 <input type="hidden" value="@ViewBag.ImageUrl" id="imgUrl"/>
-<div class="row">
+
     <div class="site-wrapper" style="padding:0;">
         <div class="cover">
             <p class="lead">
@@ -11,7 +11,7 @@
                         "default": {
                             "firstScene": "Img1",
                             "author": "Properties XYZ",
-                            "sceneFadeDuration": 1000,
+                            //"sceneFadeDuration": 1000,
                             "autoLoad": true
                         },
 
@@ -40,7 +40,7 @@
                     //});
                     viewer.on('mousedown', function (event) {
                         // For pitch and yaw of center of viewer
-                        var arr=viewer.mouseEventToCoords(event);
+                        var arr = viewer.mouseEventToCoords(event);
 
                         $("#txtPitch").val(arr[0]);
                         $("#txtYaw").val(arr[1]);
@@ -56,4 +56,3 @@
         </div>
     </div>
 
-</div>

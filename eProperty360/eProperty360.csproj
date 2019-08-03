@@ -245,6 +245,15 @@
     <Content Include="Images\MansionVijith\Img4.JPG" />
     <Content Include="Images\MansionVijith\Img5.JPG" />
     <Content Include="Images\MansionVijith\Img6.JPG" />
+    <Content Include="Images\Meharan\1.JPG" />
+    <Content Include="Images\Meharan\1_Inside.JPG" />
+    <Content Include="Images\Meharan\2.JPG" />
+    <Content Include="Images\Meharan\2_Inside.JPG" />
+    <Content Include="Images\Meharan\3.JPG" />
+    <Content Include="Images\Meharan\3_Inside.JPG" />
+    <Content Include="Images\Meharan\4.JPG" />
+    <Content Include="Images\Meharan\4_Inside.JPG" />
+    <Content Include="Images\Meharan\5_Inside.JPG" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />

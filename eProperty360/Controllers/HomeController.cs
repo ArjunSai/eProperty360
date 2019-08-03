@@ -41,7 +41,7 @@ namespace eProperty360.Controllers
 
         public List<SelectListItem> CreateImageDD()
         {
-            string imagePath = System.AppDomain.CurrentDomain.BaseDirectory + "Images\\MansionVijith";
+            string imagePath = System.AppDomain.CurrentDomain.BaseDirectory + "Images\\Meharan";
 
             string[] filePaths = Directory.GetFiles(imagePath);
             
@@ -51,7 +51,7 @@ namespace eProperty360.Controllers
             {
                 select= new SelectListItem();
                 select.Text = Path.GetFileName(item);
-                select.Value = "./Images/MansionVijith/" + select.Text;
+                select.Value = "./Images/Meharan/" + select.Text;
                 lstSelect.Add(select);
             }
             return lstSelect;
@@ -68,30 +68,34 @@ namespace eProperty360.Controllers
         }
 
 
-        public string GetPreviewHtml()
+        public string GetPreviewHtml(SceneHotSpots SceneHotSpotobj)
         {
-            List<string> lstScenes = lstSceneHotSpots.Select(x => x.SceneId).Distinct().ToList();
+            List<string> lstScenes = new List<string>();
+            lstScenes.Add(SceneHotSpotobj.SceneId);
+            List<SceneHotSpots> lstPreview = new List<SceneHotSpots>();
+            lstPreview.Add(SceneHotSpotobj);
 
-            string output = ConstructFinalTemplate(ConstructObject(lstScenes,"."));
+            string output = ConstructFinalTemplate(ConstructObject(lstScenes,".", lstPreview));
             return output;
           //  DownloadFile(output);
         }
-        public void GetFinalHtml()
+        public string GetFinalHtml()
         {
             List<string> lstScenes=lstSceneHotSpots.Select(x=>x.SceneId).Distinct().ToList();
 
-           string output= ConstructFinalTemplate(ConstructObject(lstScenes,""));
-            DownloadFile(output);
+           string output= ConstructFinalTemplate(ConstructObject(lstScenes,".", lstSceneHotSpots));
+            return output;
+            //DownloadFile(output);
         }
 
-        public Panorama ConstructObject(List<string> lstScenes,string previewStr)
+        public Panorama ConstructObject(List<string> lstScenes,string previewStr, List<SceneHotSpots> lstSceneHotSpotsFinal)
         {
             Panorama objPanorama = new Panorama();
             objPanorama.lstScenes = new List<Scenes>();
             objPanorama.FirstScene = lstScenes.FirstOrDefault();
             foreach (string itemSceneId in lstScenes)
             {
-                List<SceneHotSpots> lst = lstSceneHotSpots.Where(x => x.SceneId == itemSceneId).ToList();
+                List<SceneHotSpots> lst = lstSceneHotSpotsFinal.Where(x => x.SceneId == itemSceneId).ToList();
                 Scenes objScene = new Scenes();
                 objScene.SceneId = itemSceneId;
                 objScene.HotSpotList = new List<Hotspots>();                

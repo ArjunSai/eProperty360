@@ -7,15 +7,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pannellum</title>
-<script src="/cdn-cgi/apps/head/TEAHVq5cVsVoM9egFOAS6CBdXPk.js"></script><link rel="stylesheet" href="https://pannellum.org/css/bootstrap.min.css">
+@*<script src="/cdn-cgi/apps/head/TEAHVq5cVsVoM9egFOAS6CBdXPk.js"></script><link rel="stylesheet" href="https://pannellum.org/css/bootstrap.min.css">
 <script type="text/javascript" src="https://pannellum.org/js/bootstrap-native.min.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CSource+Code+Pro:400,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://pannellum.org/css/pygments.css">
 <link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css" />
 <script type="text/javascript" src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
-<link rel="stylesheet" href="https://pannellum.org/css/style.css">
+<link rel="stylesheet" href="https://pannellum.org/css/style.css">*@
 <h2>StichImage</h2>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>*@
 <div class="row">
     <div class="col-sm-2">
         @Html.DropDownList("img", ViewBag.ImgLst as IEnumerable<SelectListItem>, new { @id = "defaultDDL" })
@@ -45,10 +45,9 @@
                     <div class="form-group col-sm-4">                        
                         @Html.DropDownList("img", ViewBag.ImgLst as IEnumerable<SelectListItem>, new { @id = "defaultDDL2", @class = "form-control" })
                     </div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary" id="btnStitchImage">Stitch Image</button>
+                    <div class="col-sm-6">
                         <button type="button" class="btn btn-success" id="btnPreviewImage" data-toggle="modal" data-target="#myModal">Preview Image</button>  
-                        <button type="button" class="btn btn-danger" id="btnFinal">END</button> 
+
                     </div>
                 </div>
             </div>
@@ -56,12 +55,13 @@
 </div>
 
 <div  id="PreviewImage">
-</div>
-
-
-
-  
-
+</div> 
+<br />
+<div class="col-sm-6">
+    <button type="button" class="btn btn-primary" id="btnStitchImage">Stitch Image</button>
+    <button type="button" class="btn btn-danger" id="btnFinal">Get Final view</button>
+</div> 
+ 
 <script type="text/javascript">
     var jsonObj = [];
     $(document).ready(function () {
@@ -80,6 +80,7 @@
             success: function (data) {
                 $("#LoadImage").html(data);
                 $("#form2").show();
+                $("#PreviewImage").hide();
             },
             error: function (xhr, status) {
                 debugger;
@@ -95,8 +96,8 @@
         SceneHotSpots.HotspotSceneId = $("#defaultDDL2 option:selected").text();
         SceneHotSpots.HotspotSceneUrl = $("#defaultDDL2").val();
         SceneHotSpots.HotspotTitle = $("#txtDisplayText").val();
-        SceneHotSpots.HotspotYaw = $("#txtPitch").val();
-        SceneHotSpots.HotspotPitch = $("#txtYaw").val();
+        SceneHotSpots.HotspotYaw = $("#txtYaw").val(); 
+        SceneHotSpots.HotspotPitch = $("#txtPitch").val();
 
         $.ajax({
             url: '@Url.Action("MappImage", "Home")',            
@@ -109,8 +110,7 @@
                 $("#txtDisplayText").val("");
 
             },
-            error: function (xhr, status) {
-                debugger;
+            error: function (xhr, status) {                
             }
         });
     });
@@ -120,6 +120,8 @@
             url: '@Url.Action("GetFinalHtml", "Home")',
             type: 'post',
             success: function (data) {
+                $("#PreviewImage").show();
+                $("#PreviewImage").html(data);
 
             },
             error: function (xhr, status) {
@@ -129,16 +131,26 @@
     });
 
     $("#btnPreviewImage").click(function () {
+        var SceneHotSpots = new Object();
+        SceneHotSpots.SceneId = $("#defaultDDL option:selected").text();
+        SceneHotSpots.SceneUrl = $("#defaultDDL").val();
+        SceneHotSpots.HotspotSceneId = $("#defaultDDL2 option:selected").text();
+        SceneHotSpots.HotspotSceneUrl = $("#defaultDDL2").val();
+        SceneHotSpots.HotspotTitle = $("#txtDisplayText").val();
+        SceneHotSpots.HotspotYaw = $("#txtYaw").val();
+        SceneHotSpots.HotspotPitch = $("#txtPitch").val();
+
         $.ajax({
             url: '@Url.Action("GetPreviewHtml", "Home")',
+            data: JSON.stringify({ SceneHotSpotobj: SceneHotSpots }),
             type: 'post',
+            contentType: 'application/json',
             success: function (data) {
-                debugger;
+                $("#PreviewImage").show();
                 $("#PreviewImage").html(data);
                 
             },
-            error: function (xhr, status) {
-                debugger;
+            error: function (xhr, status) {                
             }
         });
     });
