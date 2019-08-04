@@ -1,6 +1,6 @@
 ﻿				"default": {
                             "firstScene": "$FirstScene",
                             "author": "$Author",
-                            "sceneFadeDuration": 1000,
+                           // "sceneFadeDuration": 1000,
                             "autoLoad": true
                         },

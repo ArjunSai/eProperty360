@@ -1,4 +1,11 @@
-﻿
+﻿<style>
+    .custom-hotspot {
+        height: 20%;
+        width: 5%;
+		background-image: url('../Images/FootPrint.png');        
+    }
+	</style>
+
 <div class="row">
     <div class="site-wrapper" style="padding:0;">
         <div class="cover">
@@ -19,6 +26,13 @@
                     //    // For pitch and yaw of mouse location
                     //    console.log(viewer.mouseEventToCoords(event));
                     //});
+					
+function hotspot(hotSpotDiv, args) {
+    hotSpotDiv.classList.add('custom-tooltip');
+    var span = document.createElement('span');    
+    hotSpotDiv.appendChild(span);
+
+}
                 </script>
         </div>
     </div>
