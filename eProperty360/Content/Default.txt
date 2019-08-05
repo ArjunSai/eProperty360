@@ -2,5 +2,6 @@
                             "firstScene": "$FirstScene",
                             "author": "$Author",
                            // "sceneFadeDuration": 1000,
-                            "autoLoad": true
+                            "autoLoad": true,
+							"autoRotate": -2
                         },
