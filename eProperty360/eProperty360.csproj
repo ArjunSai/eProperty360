@@ -239,7 +239,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\FootPrint.png" />
+    <Content Include="Images\HotSpotImg.png" />
     <Content Include="Images\MansionVijith\Img1.JPG" />
     <Content Include="Images\MansionVijith\Img2.JPG" />
     <Content Include="Images\MansionVijith\Img3.JPG" />
