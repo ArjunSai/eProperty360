@@ -239,6 +239,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\cortanablue_max.png" />
+    <Content Include="Images\cortanablue_min.png" />
+    <Content Include="Images\Cortana_grey_max.png" />
+    <Content Include="Images\Cortana_grey_min.png" />
     <Content Include="Images\Location_Max_Blue.png" />
     <Content Include="Images\Location_Max_Grey.png" />
     <Content Include="Images\Location_Min_Blue.png" />
