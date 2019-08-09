@@ -1,9 +1,34 @@
 ﻿<style>
-    .custom-hotspot {
+
+@media screen and (max-width:799px) {
+     .custom-hotspot {
         height: 26px;
-        width: 26px;
-		background-image: url('../Images/HotSpotImg.png');        
+        width: 50px;
+		background-image: url('../Images/Location_Min_Grey.png');        
     }
+	.custom-hotspot:hover
+	{
+	  height: 26px;
+        width: 50px;
+		background-image: url('../Images/Location_Min_Blue.png');    
+	}
+}
+
+/* large size style */
+@media screen and (min-width:800px) {
+     .custom-hotspot {
+        height: 50px;
+        width: 100px;
+		background-image: url('../Images/Location_Max_Grey.png');        
+    }
+	.custom-hotspot:hover
+	{
+	    height: 50px;
+        width: 100px;
+		background-image: url('../Images/Location_Max_Blue.png');  
+	}
+}
+   
 	</style>
 
 <div class="row">
