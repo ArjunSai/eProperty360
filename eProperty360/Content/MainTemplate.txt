@@ -45,16 +45,10 @@ function hotspot(hotSpotDiv, args) {
 
 
 
-function openModal(e,data){
-debugger;
-setTimeout(viewer.setHfov(viewer.getHfov() - 20), 1000);;
-//var pZ = 0 ; // Or other pan angle to Zoom in on.
-	//var yZ = 0 ; // Or other yaw angle to Zoom in on.
-	//var vZ = 25 ; // Or other Hfov angle to Zoom in on.
-	//var pS = 100 ; // Or other zoom speed
-	//viewer.lookAt(pZ,yZ,vZ,pS); // Will initiate the zoom where Pannellum is the name of the pannellum instance.
-	//setTimeout(function(){Step_2(pZ,yZ,vZ);}, 100);  // Call Step 2
-};
+                        function openModal(e, data) {
+
+                            viewer.setHfov(viewer.getHfov() - 20);
+                        };
 
 function Step_2( pS, yZ, vZ)  // Loops until the LookAt is finished
 {
@@ -83,6 +77,20 @@ function Step_3()  // Loops until the LookAt is finished
 	//Pannellum.loadScene(nameOfNewScene);
 };
 
+
+						var images = [];
+                        var i = 0;
+                        function preload(url) {
+                            images[i] = new Image();
+                            images[i].src = url;
+                            i++;
+                        }
+                        var arrImages = $ArrayImages
+
+                        for (var j = 0; j < arrImages.length; j++)
+                        {
+                            preload(arrImages[j]);
+                        }
                 </script>
         </div>
     </div>

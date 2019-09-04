@@ -127,6 +127,7 @@ namespace eProperty360.Controllers
 
         public string ConstructFinalTemplate(Panorama mainObj)
         {
+            List<string> imageList = new List<string>();
             string basePath = System.AppDomain.CurrentDomain.BaseDirectory + "Content";
             string defaultTemplate=System.IO.File.ReadAllText(basePath + "\\Default.txt");
             string SceneTemplate = System.IO.File.ReadAllText(basePath + "\\SceneTemplate.txt");
@@ -146,6 +147,7 @@ namespace eProperty360.Controllers
             strSceneNode.AppendLine(SceneTemplate);
             foreach (var item in mainObj.lstScenes)
             {
+                imageList.Add(item.SceneUrl);
                 strSceneNode.Replace("$SceneId",item.SceneId);
                 strSceneNode.Replace("$SceneUrl",item.SceneUrl);
                 strSceneNode.Replace("$friction", item.friction.ToString());
@@ -175,8 +177,19 @@ namespace eProperty360.Controllers
             }
             #endregion
 
+            #region AutoLoad Images
+            StringBuilder arrImage = new StringBuilder();
+            arrImage.AppendLine("[");
+            foreach (var imageItem in imageList)
+            {
+                arrImage.AppendLine("\"" + imageItem + "\",");
+            }
+            arrImage.AppendLine("];");
+            #endregion
+
             strMainNode.Replace("$default", strDefaultNode.ToString());
             strMainNode.Replace("$SceneList", strSceneNode.ToString());
+            strMainNode.Replace("$ArrayImages", arrImage.ToString());
 
             return strMainNode.ToString();
 
