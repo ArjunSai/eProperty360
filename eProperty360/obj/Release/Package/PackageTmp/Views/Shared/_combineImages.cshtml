@@ -1,0 +1,58 @@
+﻿
+<input type="hidden" value="@ViewBag.ImageUrl" id="imgUrl"/>
+
+    <div class="site-wrapper" style="padding:0;">
+        <div class="cover">
+            <p class="lead">
+                <div id="panorama" style="width:100%;height:390px;"></div>
+                <script>
+                    var imgUrl = $("#imgUrl").val();
+                    var viewer = pannellum.viewer('panorama', {
+                        "default": {
+                            "firstScene": "Img1",
+                            "author": "Properties XYZ",
+                            //"sceneFadeDuration": 1000,
+                            "autoLoad": true
+                        },
+
+                        "scenes": {
+                            "Img1": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                "compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "." + imgUrl,
+                            }
+
+                        }
+                    });
+
+
+                    //$("#btnYAW").click(function (e) {
+                    //        var arr=viewer.mouseEventToCoords(event);
+
+                    //        $("#txtPitch").val(arr[0]);
+                    //        $("#txtYaw").val(arr[1]);
+                    //});
+                    viewer.on('mousedown', function (event) {
+                        // For pitch and yaw of center of viewer
+                        var arr = viewer.mouseEventToCoords(event);
+
+                        $("#txtPitch").val(arr[0]);
+                        $("#txtYaw").val(arr[1]);
+                        //$("#txtPitch").val(viewer.getPitch());
+                        //$("#txtYaw").val(viewer.getYaw());
+                        console.log(viewer.getPitch(), viewer.getYaw());
+                        // For pitch and yaw of mouse location
+                        console.log(viewer.mouseEventToCoords(event));
+                    });
+
+                    
+                </script>
+        </div>
+    </div>
+

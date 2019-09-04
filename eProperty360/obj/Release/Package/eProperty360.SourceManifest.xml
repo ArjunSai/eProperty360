@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Users\agasikanti\Documents\ArjunSaiGasikanti\WorkSpace\eProperty360\eProperty360\obj\Release\Package\PackageTmp" />
-  <setAcl path="C:\Users\agasikanti\Documents\ArjunSaiGasikanti\WorkSpace\eProperty360\eProperty360\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="C:\Users\agasikanti\Documents\ArjunSaiGasikanti\WorkSpace\eProperty360\eProperty360\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="C:\eProperty360\eProperty360\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\eProperty360\eProperty360\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\eProperty360\eProperty360\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

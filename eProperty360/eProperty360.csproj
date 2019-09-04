@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/52050139-d3a6-44fa-ba00-927b1b24d73b/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/eProperty360</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -243,6 +244,7 @@
     <Content Include="Images\cortanablue_min.png" />
     <Content Include="Images\Cortana_grey_max.png" />
     <Content Include="Images\Cortana_grey_min.png" />
+    <Content Include="Images\dottedarrowpng.png" />
     <Content Include="Images\Location_Max_Blue.png" />
     <Content Include="Images\Location_Max_Grey.png" />
     <Content Include="Images\Location_Min_Blue.png" />
@@ -269,7 +271,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\eProperty360.pubxml" />
+    <Content Include="Images\200w.webp" />
+    <None Include="Properties\PublishProfiles\MakeMy360 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

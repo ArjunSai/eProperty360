@@ -1,142 +1,264 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="generator" content="Hugo 0.48" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pannellum</title>
-    <script src="/cdn-cgi/apps/head/TEAHVq5cVsVoM9egFOAS6CBdXPk.js"></script>
-    <link rel="stylesheet" href="https://pannellum.org/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://pannellum.org/js/bootstrap-native.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CSource+Code+Pro:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://pannellum.org/css/pygments.css">
-    <link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css" />
-    <script type="text/javascript" src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
-    <link rel="stylesheet" href="https://pannellum.org/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
-<body>
-    <div class="row">
-        <div class="site-wrapper" style="padding:0;">
-            <div class="cover">
-                <p class="lead">
-                    <div id="panorama" style="width:100%;height:390px;"></div>
-                    <script>
-                        var viewer = pannellum.viewer('panorama', {
-                            "default": {
-                                "firstScene": "Img1.JPG",
-                                "author": "",
-                                "sceneFadeDuration": 1000,
-                                "autoLoad": true
-                            },
-
-
-                            "scenes": {
-                                "Img1.JPG": {
-                                    "title": "",
-                                    "hfov": 100,
-                                    "pitch": 10,
-                                    "yaw": 50,
-                                    "compass": true,
-                                    "northOffset": 289,
-                                    "crossOrigin": "anonymous",
-                                    "type": "equirectangular",
-                                    "panorama": "../Images/MansionVijith/Img1.JPG",
-                                    "hotSpots": [
-                                                                           {
-                                                                               "pitch": -7,
-                                                                               "yaw": 171,
-                                                                               "type": "scene",
-                                                                               "text": "",
-                                                                               "sceneId": "Img1.JPG"
-                                                                           }
-
-                                    ]
-                                }
-    , "Img2.JPG": {
-        "title": "",
-        "hfov": 100,
-        "pitch": 10,
-        "yaw": 50,
-        "compass": true,
-        "northOffset": 289,
-        "crossOrigin": "anonymous",
-        "type": "equirectangular",
-        "panorama": "./Images/MansionVijith/Img2.JPG",
-        "hotSpots": [
-
-        ]
-    }
-    , "Img3.JPG": {
-        "title": "",
-        "hfov": 100,
-        "pitch": 10,
-        "yaw": 50,
-        "compass": true,
-        "northOffset": 289,
-        "crossOrigin": "anonymous",
-        "type": "equirectangular",
-        "panorama": "./Images/MansionVijith/Img3.JPG",
-        "hotSpots": [
-
-        ]
-    }
-    , "Img4.JPG": {
-        "title": "",
-        "hfov": 100,
-        "pitch": 10,
-        "yaw": 50,
-        "compass": true,
-        "northOffset": 289,
-        "crossOrigin": "anonymous",
-        "type": "equirectangular",
-        "panorama": "./Images/MansionVijith/Img4.JPG",
-        "hotSpots": [
-
-        ]
-    }
-    , "Img5.JPG": {
-        "title": "",
-        "hfov": 100,
-        "pitch": 10,
-        "yaw": 50,
-        "compass": true,
-        "northOffset": 289,
-        "crossOrigin": "anonymous",
-        "type": "equirectangular",
-        "panorama": "./Images/MansionVijith/Img5.JPG",
-        "hotSpots": [
-
-        ]
-    }
-    , "Img6.JPG": {
-        "title": "",
-        "hfov": 100,
-        "pitch": 10,
-        "yaw": 50,
-        "compass": true,
-        "northOffset": 289,
-        "crossOrigin": "anonymous",
-        "type": "equirectangular",
-        "panorama": "./Images/MansionVijith/Img6.JPG",
-        "hotSpots": [
-
-        ]
+﻿<style>
+    .custom-hotspot {
+        height: 100px;
+        width: 100px;
+        background-image: url('../Images/dottedarrowpng.png');
     }
 
+    .pnlm-load-box {
+        z-index: -999;
+        opacity: 0;
+    }
+</style>
+
+<div class="row">
+    <div class="site-wrapper" style="padding:0;">
+        <div class="cover">
+            <p class="lead">
+                <div id="panorama1" style="width:100%;height:390px;">
+                </div>
+                <script>
+                    var viewer = pannellum.viewer('panorama1', {
+                        "default": {
+                            "firstScene": "1.JPG",
+                            "author": "EProperty",
+
+                            "autoLoad": true,
+                            "autoRotate": -1
+                        },
+
+
+                        "scenes": {
+                            "1.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/1.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+                                    {
+                                        "pitch": -29,
+                                        "yaw": -41,
+                                        "type": "scene",
+                                        "text": "",
+                                        "sceneId": "2.JPG",
+                                        "cssClass": "custom-hotspot",
+                                        "createTooltipFunc": hotspot,
+                                        "clickHandlerFunc": openModal
+                                    }
+
+                                ]
                             }
-                        });
+                            , "2.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/2.JPG",
+                                "friction": "0.6",
 
-                        viewer.on('mousedown', function (event) {
-                            // For pitch and yaw of center of viewer
-                            console.log(viewer.getPitch(), viewer.getYaw());
-                            // For pitch and yaw of mouse location
-                            console.log(viewer.mouseEventToCoords(event));
-                        });
-                    </script>
-            </div>
+
+                                "hotSpots": [
+                                    {
+                                        "pitch": -14,
+                                        "yaw": -50,
+                                        "type": "scene",
+                                        "text": "",
+                                        "sceneId": "1_Inside.JPG",
+                                        "cssClass": "custom-hotspot",
+                                        "createTooltipFunc": hotspot,
+                                        "clickHandlerFunc": openModal
+                                    }
+
+                                ]
+                            }
+                            , "1_Inside.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/1_Inside.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+                                    {
+                                        "pitch": -22,
+                                        "yaw": -13,
+                                        "type": "scene",
+                                        "text": "",
+                                        "sceneId": "2_Inside.JPG",
+                                        "cssClass": "custom-hotspot",
+                                        "createTooltipFunc": hotspot,
+                                        "clickHandlerFunc": openModal
+                                    }
+
+                                ]
+                            }
+                            , "2_Inside.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/2_Inside.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+                                    {
+                                        "pitch": -23,
+                                        "yaw": 170,
+                                        "type": "scene",
+                                        "text": "",
+                                        "sceneId": "3.JPG",
+                                        "cssClass": "custom-hotspot",
+                                        "createTooltipFunc": hotspot,
+                                        "clickHandlerFunc": openModal
+                                    }
+                                    , {
+                                        "pitch": 0,
+                                        "yaw": 0,
+                                        "type": "scene",
+                                        "text": "",
+                                        "sceneId": "3.JPG",
+                                        "cssClass": "custom-hotspot",
+                                        "createTooltipFunc": hotspot,
+                                        "clickHandlerFunc": openModal
+                                    }
+
+                                ]
+                            }
+                            , "3.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/3.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+
+                                ]
+                            }
+                            , "3_Inside.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/3_Inside.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+
+                                ]
+                            }
+                            , "4.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/4.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+
+                                ]
+                            }
+                            , "4_Inside.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/4_Inside.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+
+                                ]
+                            }
+                            , "5_Inside.JPG": {
+                                "title": "",
+                                "hfov": 100,
+                                "pitch": 10,
+                                "yaw": 50,
+                                //"compass": true,
+                                "northOffset": 289,
+                                "crossOrigin": "anonymous",
+                                "type": "equirectangular",
+                                "panorama": "../Images/Meharan/5_Inside.JPG",
+                                "friction": "0.6",
+
+
+                                "hotSpots": [
+
+                                ]
+                            }
+
+                        }
+                    });
+
+                    //viewer.on('mousedown', function (event) {
+                    //    // For pitch and yaw of center of viewer
+                    //    console.log(viewer.getPitch(), viewer.getYaw());
+                    //    // For pitch and yaw of mouse location
+                    //    console.log(viewer.mouseEventToCoords(event));
+                    //});
+
+                    function hotspot(hotSpotDiv, args) {
+                        hotSpotDiv.classList.add('custom-tooltip');
+                        var span = document.createElement('span');
+                        hotSpotDiv.appendChild(span);
+
+                    }
+
+
+
+                    function openModal(e, data) {
+
+                        viewer.setHfov(viewer.getHfov() - 20);
+                    };
+
+                </script>
         </div>
-
     </div>
-</body>
-</html>
+
+</div>

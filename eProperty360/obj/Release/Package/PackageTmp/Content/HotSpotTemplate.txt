@@ -3,5 +3,8 @@
                                         "yaw": $Yaw,
                                         "type": "scene",
                                         "text": "",
-                                        "sceneId": "$SceneId"
+                                        "sceneId": "$HotspotSceneId",
+										 "cssClass": "custom-hotspot",
+										 "createTooltipFunc": hotspot,
+										 "clickHandlerFunc": openModal
                                     }

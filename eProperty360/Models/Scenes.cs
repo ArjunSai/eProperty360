@@ -12,5 +12,7 @@ namespace eProperty360.Models
         public string Title { get; set; }
         public string SceneUrl { get; set; }
         public bool IsDefault { get; set; }
+
+        public float friction { get; set; } = 0.15f;
     }
 }

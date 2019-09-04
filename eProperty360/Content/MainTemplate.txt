@@ -1,41 +1,25 @@
 ﻿<style>
-
-@media screen and (max-width:799px) {
-     .custom-hotspot {
-        height: 26px;
-        width: 50px;
-		background-image: url('../Images/Location_Min_Grey.png');        
-    }
-	.custom-hotspot:hover
+	.custom-hotspot
 	{
-	  height: 26px;
-        width: 50px;
-		background-image: url('../Images/Location_Min_Blue.png');    
-	}
-}
-
-/* large size style */
-@media screen and (min-width:800px) {
-     .custom-hotspot {
-        height: 50px;
+	    height: 100px;
         width: 100px;
-		background-image: url('../Images/Location_Max_Grey.png');        
-    }
-	.custom-hotspot:hover
-	{
-	    height: 50px;
-        width: 100px;
-		background-image: url('../Images/Location_Max_Blue.png');  
+		background-image: url('../Images/dottedarrowpng.png');  
 	}
-}
    
+   .pnlm-load-box {
+   z-index:-999;
+   opacity: 0;
+
+}
+
 	</style>
 
 <div class="row">
     <div class="site-wrapper" style="padding:0;">
         <div class="cover">
             <p class="lead">
-                <div id="panorama1" style="width:100%;height:390px;"></div>
+                <div id="panorama1" style="width:100%;height:390px;">
+				</div>
                 <script>
                     var viewer=pannellum.viewer('panorama1', {
                         $default
@@ -58,6 +42,47 @@ function hotspot(hotSpotDiv, args) {
     hotSpotDiv.appendChild(span);
 
 }
+
+
+
+function openModal(e,data){
+debugger;
+setTimeout(viewer.setHfov(viewer.getHfov() - 20), 1000);;
+//var pZ = 0 ; // Or other pan angle to Zoom in on.
+	//var yZ = 0 ; // Or other yaw angle to Zoom in on.
+	//var vZ = 25 ; // Or other Hfov angle to Zoom in on.
+	//var pS = 100 ; // Or other zoom speed
+	//viewer.lookAt(pZ,yZ,vZ,pS); // Will initiate the zoom where Pannellum is the name of the pannellum instance.
+	//setTimeout(function(){Step_2(pZ,yZ,vZ);}, 100);  // Call Step 2
+};
+
+function Step_2( pS, yZ, vZ)  // Loops until the LookAt is finished
+{
+debugger;
+   pI=Math.round(viewer.getPitch()); // get actual pitch and round
+   yI=Math.round(viewer.getYaw()); // get actual yaw and round
+	vI=Math.round(viewer.getHfov()); // get actual Hfov and round
+	
+	if(yI>180){yI=yI-360;viewer.setYaw(yI,0);}  
+	if(yI<-180){yI=yI+360;viewer.setYaw(yI,0);}
+	
+	if(pI===pS && yI===yZ && vI===vZ)  // Has LookAt finished
+	{		
+		setTimeout(function(){Step_3();}, 10);
+	}
+	else
+	{		
+		setTimeout(function(){Step_2(pS,yZ,vZ);}, 100);  // Call Step 2 again, loop until LookAt has finished
+	}
+
+};
+
+function Step_3()  // Loops until the LookAt is finished
+{
+	//var nameOfNewScene = "Scene2" // Or what ever the name of the next scene is.
+	//Pannellum.loadScene(nameOfNewScene);
+};
+
                 </script>
         </div>
     </div>

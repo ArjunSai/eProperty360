@@ -41,7 +41,7 @@ namespace eProperty360.Controllers
 
         public List<SelectListItem> CreateImageDD()
         {
-            string imagePath = System.AppDomain.CurrentDomain.BaseDirectory + "Images\\Meharan";
+            string imagePath = System.AppDomain.CurrentDomain.BaseDirectory + "Images\\MansionVijith";
 
             string[] filePaths = Directory.GetFiles(imagePath);
             
@@ -51,7 +51,7 @@ namespace eProperty360.Controllers
             {
                 select= new SelectListItem();
                 select.Text = Path.GetFileName(item);
-                select.Value = "./Images/Meharan/" + select.Text;
+                select.Value = "./Images/MansionVijith/" + select.Text;
                 lstSelect.Add(select);
             }
             return lstSelect;
@@ -98,7 +98,8 @@ namespace eProperty360.Controllers
                 List<SceneHotSpots> lst = lstSceneHotSpotsFinal.Where(x => x.SceneId == itemSceneId).ToList();
                 Scenes objScene = new Scenes();
                 objScene.SceneId = itemSceneId;
-                objScene.HotSpotList = new List<Hotspots>();                
+                objScene.friction = 0.60f;
+                objScene.HotSpotList = new List<Hotspots>();
                 foreach (SceneHotSpots item in lst)
                 {
                     Hotspots objHotSpot = new Hotspots();
@@ -117,6 +118,7 @@ namespace eProperty360.Controllers
                 Scenes objScene = new Scenes();
                 objScene.SceneId = item;
                 objScene.SceneUrl= previewStr + ddlImages.FirstOrDefault(x => x.Text == item).Value;
+                objScene.friction = 0.60f;
                 objScene.HotSpotList = new List<Hotspots>();
                 objPanorama.lstScenes.Add(objScene);
             }
@@ -146,6 +148,7 @@ namespace eProperty360.Controllers
             {
                 strSceneNode.Replace("$SceneId",item.SceneId);
                 strSceneNode.Replace("$SceneUrl",item.SceneUrl);
+                strSceneNode.Replace("$friction", item.friction.ToString());
                 #region Hotspot Node
                 StringBuilder strHotSpot = new StringBuilder();
                 if(item.HotSpotList.Any())
