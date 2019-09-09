@@ -6,5 +6,6 @@
                                         "sceneId": "$HotspotSceneId",
 										 "cssClass": "custom-hotspot",
 										 "createTooltipFunc": hotspot,
-										 "clickHandlerFunc": openModal
+										 "clickHandlerFunc": openModal,
+                                         "clickHandlerArgs": "$HotspotSceneId"
                                     }

@@ -11,5 +11,7 @@ namespace eProperty360.Models
         public string Yaw { get; set; }
         public string Text { get; set; }
         public string HotspotSceneId { get; set; }
+
+        public string HotspotSceneUrl { get; set; }
     }
 }

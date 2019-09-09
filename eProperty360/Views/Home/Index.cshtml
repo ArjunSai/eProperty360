@@ -53,7 +53,8 @@
                                             "sceneId": "2.JPG",
                                             "cssClass": "custom-hotspot",
                                             "createTooltipFunc": hotspot,
-                                            "clickHandlerFunc": openModal
+                                            "clickHandlerFunc": openModal,
+                                            "clickHandlerArgs":"2.JPG"
                                         }
 
                                     ]
@@ -80,7 +81,8 @@
                                             "sceneId": "1_Inside.JPG",
                                             "cssClass": "custom-hotspot",
                                             "createTooltipFunc": hotspot,
-                                            "clickHandlerFunc": openModal
+                                            "clickHandlerFunc": openModal,
+                                            "clickHandlerArgs": "1_Inside.JPG"
                                         }
 
                                     ]
@@ -106,8 +108,9 @@
                                             "text": "",
                                             "sceneId": "2_Inside.JPG",
                                             "cssClass": "custom-hotspot",
-                                            "createTooltipFunc": hotspot,
-                                            "clickHandlerFunc": openModal
+                                            "createTooltipFunc": hotspot,                                            
+                                             "clickHandlerFunc": openModal,
+                                            "clickHandlerArgs": "2_Inside.JPG"
                                         }
 
                                     ]
@@ -134,7 +137,8 @@
                                             "sceneId": "3.JPG",
                                             "cssClass": "custom-hotspot",
                                             "createTooltipFunc": hotspot,
-                                            "clickHandlerFunc": openModal
+                                            "clickHandlerFunc": openModal,
+                                            "clickHandlerArgs": "3.JPG"
                                         }
                                         , {
                                             "pitch": 0,
@@ -143,8 +147,8 @@
                                             "text": "",
                                             "sceneId": "3.JPG",
                                             "cssClass": "custom-hotspot",
-                                            "createTooltipFunc": hotspot,
-                                            "clickHandlerFunc": openModal
+                                            "clickHandlerFunc": openModal,
+                                            "clickHandlerArgs": "3.JPG"
                                         }
 
                                     ]
@@ -253,35 +257,50 @@
                         }
 
 
-
                         function openModal(e, data) {
-
-                            viewer.setHfov(viewer.getHfov() - 20);
+                            
+                            LoadImageForHotSpot(data);
+                           // viewer.setHfov(viewer.getHfov() - 20);
                         };
 
-                        var images = [];
+                     
                         var i = 0;
                         function preload(url) {
-                            images[i] = new Image();
-                            images[i].src = url;
-                            i++;
+                            var arrayUrl = url.split(",");
+                            for (var j = 0; j < arrayUrl.length; j++) {
+                                var images = new Image();
+                                images.src = arrayUrl[j];
+                            }                                                    
                         }
-                        var arrImages = ["../Images/Meharan/2.JPG",
+                        //var arrImages = ["../Images/Meharan/2.JPG",
 
-                            "../Images/Meharan/1_Inside.JPG",
-                            "../Images/Meharan/2_Inside.JPG",
-                            "../Images/Meharan/3.JPG",
-                            "../Images/Meharan/3_Inside.JPG",
-                            "../Images/Meharan/4.JPG",
-                            "../Images/Meharan/4_Inside.JPG",
-                            "../Images/Meharan/5_Inside.JPG"];
+                        //    "../Images/Meharan/1_Inside.JPG",
+                        //    "../Images/Meharan/2_Inside.JPG",
+                        //    "../Images/Meharan/3.JPG",
+                        //    "../Images/Meharan/3_Inside.JPG",
+                        //    "../Images/Meharan/4.JPG",
+                        //    "../Images/Meharan/4_Inside.JPG",
+                        //    "../Images/Meharan/5_Inside.JPG"];
 
-                        for (var j = 0; j < arrImages.length; j++)
-                        {
-                            preload(arrImages[j]);
-                        }
+                        //for (var j = 0; j < arrImages.length; j++)
+                        //{
+                        //    preload(arrImages[j]);
+                        //}
                    
-
+                        function LoadImageForHotSpot(hValue) {                            
+                            switch (hValue) {
+                               
+                            case "2.JPG": preload("../Images/Meharan/1_Inside.JPG");
+                                    break;
+                             case "1_Inside.JPG": preload("../Images/Meharan/2_Inside.JPG");
+                                    break;
+                             case "2_Inside.JPG": preload("../Images/Meharan/3.JPG");
+                                    break;
+                                default: preload("../Images/Meharan/2.JPG");
+                                    break;
+                            }
+                        }
+                        LoadImageForHotSpot("");
 
                     </script>
             </div>

@@ -45,9 +45,10 @@ function hotspot(hotSpotDiv, args) {
 
 
 
-                        function openModal(e, data) {
-
-                            viewer.setHfov(viewer.getHfov() - 20);
+						   function openModal(e, data) {
+                            
+                            LoadImageForHotSpot(data);
+                           // viewer.setHfov(viewer.getHfov() - 20);
                         };
 
 function Step_2( pS, yZ, vZ)  // Loops until the LookAt is finished
@@ -78,19 +79,26 @@ function Step_3()  // Loops until the LookAt is finished
 };
 
 
-						var images = [];
-                        var i = 0;
-                        function preload(url) {
-                            images[i] = new Image();
-                            images[i].src = url;
-                            i++;
-                        }
-                        var arrImages = $ArrayImages
 
-                        for (var j = 0; j < arrImages.length; j++)
-                        {
-                            preload(arrImages[j]);
+
+                     
+                        var i = 0;
+                           function preload(url) {
+                            var arrayUrl = url.split(",");
+                            for (var j = 0; j < arrayUrl.length; j++) {
+                                var images = new Image();
+                                images.src = arrayUrl[j];
+                            }                                                    
                         }
+                   
+                        function LoadImageForHotSpot(hValue) {                            
+                            switch (hValue) {
+                               
+								$sceneHotSpotUrls
+                                default: $defHotspotUrls                                  
+                            }
+                        }
+                        LoadImageForHotSpot("");
                 </script>
         </div>
     </div>

@@ -107,6 +107,7 @@ namespace eProperty360.Controllers
                     objHotSpot.HotspotSceneId = item.HotspotSceneId;
                     objHotSpot.Pitch = item.HotspotPitch;
                     objHotSpot.Yaw = item.HotspotYaw;
+                    objHotSpot.HotspotSceneUrl = previewStr + item.HotspotSceneUrl;
                     objScene.HotSpotList.Add(objHotSpot);
                 }
                 objPanorama.lstScenes.Add(objScene);
@@ -141,10 +142,13 @@ namespace eProperty360.Controllers
             strDefaultNode.AppendLine(defaultTemplate);
             strDefaultNode.Replace("$FirstScene", mainObj.FirstScene);
             strDefaultNode.Replace("$Author", mainObj.Author);
+
+            string defaultPreLoadImages = ConstructCasesForHotSpots("", "", mainObj.lstScenes.FirstOrDefault(x => x.SceneId.Equals(mainObj.FirstScene)).HotSpotList, isDefault: true);
             #endregion
             #region Scene Node
             StringBuilder strSceneNode = new StringBuilder();
             strSceneNode.AppendLine(SceneTemplate);
+            string caseString = string.Empty;
             foreach (var item in mainObj.lstScenes)
             {
                 imageList.Add(item.SceneUrl);
@@ -173,7 +177,9 @@ namespace eProperty360.Controllers
                 if (mainObj.lstScenes.LastOrDefault()!=item)
                 {
                     strSceneNode.AppendLine(","+SceneTemplate);
-                }               
+                }
+
+                caseString = caseString + ConstructCasesForHotSpots(caseString, item.SceneId, item.HotSpotList);
             }
             #endregion
 
@@ -190,6 +196,8 @@ namespace eProperty360.Controllers
             strMainNode.Replace("$default", strDefaultNode.ToString());
             strMainNode.Replace("$SceneList", strSceneNode.ToString());
             strMainNode.Replace("$ArrayImages", arrImage.ToString());
+            strMainNode.Replace("$defHotspotUrls", defaultPreLoadImages);
+            strMainNode.Replace("$sceneHotSpotUrls", caseString);
 
             return strMainNode.ToString();
 
@@ -209,6 +217,19 @@ namespace eProperty360.Controllers
             Response.AddHeader("content-disposition", "attachment;    filename=Output.cshtml");
             Response.BinaryWrite(bytes);
             Response.End();
+        }
+
+        public string ConstructCasesForHotSpots(string strToAppend,string sceneId,List<Hotspots> hotSpotUrl,bool isDefault=false)
+        {
+            StringBuilder caseBuilder = new StringBuilder();
+            if(!isDefault)
+            caseBuilder.AppendLine("case \"" + sceneId + "\":");
+            foreach (var item in hotSpotUrl)
+            {
+                caseBuilder.AppendLine("preload(\"" + item.HotspotSceneUrl + "\");");
+            }
+            caseBuilder.AppendLine("break;");    
+            return caseBuilder.ToString();
         }
     }
 }
